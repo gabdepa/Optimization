@@ -23,23 +23,24 @@ BEGIN {
 END {
     # objective function to be maximized
     printf "max: "
-    for (i = 0; i < n; ++i) {
-        if (i < n - 1) printf "%dx%d + ", V[i], i
-        else printf "%dx%d;\n", V[i], i
+    for (i = 0; i < n - 1; ++i) {
+        printf "%dx%d + ", V[i], i
     }
+    printf "%dx%d;\n", V[i], i
+
+    printf "\n"
 
     # generate constraints
     for (j = 0; j < m; ++j) {
-        printf "\n"
-        for (i = 0; i < n; ++i) {
-            if (i < n - 1) printf "%.1fx%d + ", P[i][j], i
-            else printf "%.1fx%d <= %d;\n", P[i][j], i, L[j]
+        for (i = 0; i < n - 1; ++i) {
+            printf "%.1fx%d + ", P[i][j], i
         }
+        printf "%.1fx%d <= %d;\n", P[i][j], i, L[j]
     }
 
     # variable bounds
     printf "\n"
     for (i = 0; i < n; ++i) {
-        printf "x%d >= 0\n", i
+        printf "x%d >= 0;\n", i
     }
 }
