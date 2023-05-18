@@ -6,16 +6,16 @@ BEGIN {
 
 # Data extraction section
 {
-    if (FNR == 1) {
-        n = $1  # Get the number of products
-        m = $2  # Get the number of compounds
-    } else if (FNR == 2) {
-        for (i = 1; i <= n; ++i) V[i-1] = $i  # Get values of products
-    } else if (FNR > 2 && FNR <= 2 + m) {
-        C[FNR - 3] = $1  # Get cost of compounds
-        L[FNR - 3] = $2  # Get limits of compounds
-    } else {
-        for (j = 1; j <= m; ++j) P[FNR - m - 3][j-1] = $j  # Get proportions of compounds in products
+     if (FNR == 1) {  # For the first record in the file
+        n = $1  # Assign the first field to 'n' (which represents the number of products)
+        m = $2  # Assign the second field to 'm' (which represents the number of compounds)
+    } else if (FNR == 2) {  # For the second record in the file
+        for (i = 1; i <= n; ++i) V[i-1] = $i  # Assign the fields to the array 'V' (which represents the values of the products)
+    } else if (FNR > 2 && FNR <= 2 + m) {  # For the records from the third to 'm+2' in the file
+        C[FNR - 3] = $1  # Assign the first field to the array 'C' (which represents the cost of each compound)
+        L[FNR - 3] = $2  # Assign the second field to the array 'L' (which represents the limit of each compound)
+    } else {  # For the rest of the records in the file
+        for (j = 1; j <= m; ++j) P[FNR - m - 3][j-1] = $j  # Assign the fields to the 2D array 'P' (which represents the proportions of compounds in each product)
     }
 }
 
