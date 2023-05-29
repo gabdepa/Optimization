@@ -25,18 +25,30 @@ cij: Custo de cada composto j na produção do produto ,
 pj: Preço por litro do composto j, 
 qj: Limite diário de volume para o composto j,
 
-Como é desejado a maximização do lucro da empresa, modelamos o problema tal que a função objetiva z = (∑(vi - cij)) * xi, para todo xi pertencente aos produtos. Já para as restrições, utilizamos as células referentes aos produtos x compostos para restringir a quantidade dos compostos conforme os limites diários, gerando uma restrição para cada composto utilizado, tal que: (cij * xi) ≤ qj para todo j pertencente aos compostos e i pertencente aos produtos.
-Assim, geramos ao seguinte modelo: 
-Max z = (∑(vi - cij)) * xi 
-Sujeito a: 
-    c[1][1]* (x1) + c[2][1] * (x2+1) + ... + c[n][1] * (Xn)
-    c[1][2]* (x1) + c[2][2] * (x2+1) + ... + c[n][2] * (Xn)
-    ...
-    c[1][m] * (xi) + c[2][m] * (xi+1) + ... + c[n][m]* (Xn)
-xi >= 0, para todo xi ∈ R
+Como é desejado a maximização do lucro da empresa, modelamos o problema tal que a função objetiva: z = (∑(vi - cij)) * xi, para todo xi pertencente aos produtos. Já para as restrições, utilizamos as células referentes aos produtos x compostos para restringir a quantidade dos compostos conforme os limites diários, gerando uma restrição para cada composto utilizado, tal que: (cij * xi) ≤ qj para todo j pertencente aos compostos e i pertencente aos produtos.
+Assim, geramos ao seguinte modelo: <br> <br> 
+Max z = (∑(vi - cij)) * xi  <br> 
+Sujeito a:  <br> 
+    c[1][1]* (x1) + c[2][1] * (x2+1) + ... + c[n][1] * (Xn) <br> 
+    c[1][2]* (x1) + c[2][2] * (x2+1) + ... + c[n][2] * (Xn) <br> 
+    ... <br> 
+    c[1][m] * (xi) + c[2][m] * (xi+1) + ... + c[n][m]* (Xn) <br> 
+xi >= 0, para todo xi ∈ R <br> 
 
 ## 3. Implementação
-
+O objetivo deste projeto é a geração uma saída para ser usada pelo resolvedor lp_solve, tal que a entrada segue o formato segue o padrão, a seguir;
+O trabalho está dividido em dois arquivos: producao.awk e makefile, e um diretório contento do exemplos que utilizamos para testes e análises das gerações do programa: examples. 
+### Entrada: 
+* Inicia com dois números inteiros n e m indicando a quantidade de produtos e compostos, respectivamente.
+* n números indicando os preços de venda (de 1 litro, vi) de cada produto.
+* m linhas, com 2 números em cada, indicando o custo (de 1 litro,pj ) e o limite de produçao (qj ) de cada composto usado como matériaprima. 
+* n × m números indicando a quantidade de cada composto usada na produção de 1 litro de cada produto.
+### Saída 
+Saída seguindo os padrão aceito pelo lp_solve, abordada com mais detalhes nos exemplos na seção 4.
+### Algoritmo:
+Percorremos as linhas de entrada do arquivo,atribuindo ao vetor V os valores dos produtos, ao vetor C os custos dos produtos, o vetor L os limites dos compostos e as proporções de compostos/produto à matriz P. <br>
+Após percorrermos a entrada, geramos a saída conforme impressão "max", somando a variável cost os custos para produção de cada produto (somatório(<P[i][j]>preço_dos_compostos * <C[j]> porcentagem_no_produto)), atribuindo então à variável profit o lucro do produto i: profit = V[i] - cost. Posteriormente impressão da unção de maximização conforme profit[i], i + 1, e finalmente, a impressão das restrições conforme citados na seção de modelagem de cada composto e seu limite diário e as variáveis de não restrição.
+  
 ## 4. Exemplos
 Foram gerados exemplos distintos para teste do programa e análise de diferentes casos para o problema apresentado, tais como abordados a seguir: 
 
