@@ -9,7 +9,6 @@ Data: 29/05/2023<br>
 # Modelagem e Implementação por programação linear de uma solução para o problema de Produção de Produtos Químicos
 
 ## 1. Introdução
-
 Dado o problema de Produção de Produtos Químicos em que uma empresa produz n tipos diferentes de produto. Utilizando proporções de m diferentes compostos.
 Cada produto i tem valor de venda (por litro), vi. Cada
 composto j usado tem um preço (por litro), pj , e um limite diário de volume (em litros), qj.A quantidade (em litros) de uso de cada composto j na
@@ -17,6 +16,24 @@ produção de 1 litro do produto i é dada por cij.<br>
 Deseja-se maximizar os lucros da empresa, supondo que toda a produção será vendida.
 
 ## 2. Modelagem
+Conforme a introdução do problema, dados que: 
+n: Quantidade de produtos, 
+m: Quantidade de compostos,
+vi: Valor de venda do produto i,
+xi: Variável que representa a quantidade para o produto xi,
+cij: Custo de cada composto j na produção do produto ,
+pj: Preço por litro do composto j, 
+qj: Limite diário de volume para o composto j,
+
+Como é desejado a maximização do lucro da empresa, modelamos o problema tal que a função objetiva z = (∑(vi - cij)) * xi, para todo xi pertencente aos produtos. Já para as restrições, utilizamos as células referentes aos produtos x compostos para restringir a quantidade dos compostos conforme os limites diários, gerando uma restrição para cada composto utilizado, tal que: (cij * xi) ≤ qj para todo j pertencente aos compostos e i pertencente aos produtos.
+Assim, geramos ao seguinte modelo: 
+Max z = (∑(vi - cij)) * xi 
+Sujeito a: 
+    c[1][1]* (x1) + c[2][1] * (x2+1) + ... + c[n][1] * (Xn)
+    c[1][2]* (x1) + c[2][2] * (x2+1) + ... + c[n][2] * (Xn)
+    ...
+    c[1][m] * (xi) + c[2][m] * (xi+1) + ... + c[n][m]* (Xn)
+xi >= 0, para todo xi ∈ R
 
 ## 3. Implementação
 
@@ -58,7 +75,7 @@ x1 >= 0; <br>
 x2 >= 0; <br> 
 x3 >= 0; <br> 
 
-OUTPUT LP_SOLVE: 
+OUTPUT LP_SOLVE: <br>  
 
 Value of objective function: 3755.31914894 <br> 
 
@@ -96,7 +113,7 @@ INPUT :
 0.4 0.2 0.0 0.0 <br> 
 0.0 0.0 0.8 0.0 <br> 
 
-OUTPUT:
+OUTPUT: <br> 
 max: 7.8x1 + 4.8x2 + 2.2x3 + 96.0x4; <br> 
 
 0.2x1 + 1.0x2 + 0.4x3 + 0.0x4 <= 1000; <br> 
@@ -109,7 +126,7 @@ x2 >= 0;<br>
 x3 >= 0;<br> 
 x4 >= 0;<br> 
 
-OUTPUT LP_SOLVE: 
+OUTPUT LP_SOLVE: <br>  
 
 Value of objective function: 33075.00000000
 
@@ -134,7 +151,7 @@ Portanto, uma solução ótima ... contendo ... podemos perceber que ...
 |     | LIMITE | 1000 | 2000 | 10  | 2000 |       |
 
 
-INPUT:
+INPUT: <br> 
 4 4<br> 
 10 7 3 100<br> 
 100 1000<br> 
@@ -146,7 +163,7 @@ INPUT:
 0.4 0.2 0.0 0.0<br> 
 0.0 0.0 0.8 0.0 <br> 
 
-OUTPUT:
+OUTPUT: <br> 
 max: -120.0x1 + -123.0x2 + -77.0x3 + -300.0x4;
 
 0.2x1 + 1.0x2 + 0.4x3 + 0.0x4 <= 1000;<br> 
@@ -159,7 +176,7 @@ x2 >= 0;<br>
 x3 >= 0;<br> 
 x4 >= 0;<br> 
 
-OUTPUT LP_SOLVE: 
+OUTPUT LP_SOLVE: <br>  
 Value of objective function: 0
 
 Actual values of the variables:
@@ -183,7 +200,7 @@ Portanto, uma solução ótima ... contendo ... podemos perceber que ...
 |     | CUSTO  | 1    | 1    | 5   |  10  |       |
 |     | LIMITE | 1000 | 2000 | 200  | 2000 |       |
 
-INPUT:
+INPUT: <br> 
 
 5 4<br> 
 10 7 3 100 100<br> 
@@ -197,7 +214,7 @@ INPUT:
 0.0 0.1 0.8 0.0 <br> 
 0.1 0.0 0.8 0.0 <br> 
 
-OUTPUT:
+OUTPUT: <br> 
 max: 8.3x1 + 4.9x2 + 2.4x3 + 95.9x4 + 95.9x5;
 
 0.2x1 + 1.0x2 + 0.4x3 + 0.0x4 + 0.1x5 <= 1000;<br> 
@@ -211,7 +228,7 @@ x3 >= 0;<br>
 x4 >= 0;<br> 
 x5 >= 0;<br> 
 
-OUTPUT LP_SOLVE:
+OUTPUT LP_SOLVE: <br> 
 Value of objective function: 57765.62500000
 
 Actual values of the variables:
