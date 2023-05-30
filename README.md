@@ -96,7 +96,7 @@ x1                        212.766 <br>
 x2                        957.447 <br> 
 x3                              0 <br> 
 
-Portanto, uma solução ótima ... contendo ... podemos perceber que ...
+Portanto, uma solução ótima tem lucro de R$ 3755.31 com 212,766 litros do produto 1 e 957,44 do produto 2  e 0 litros do produto 3, podemos perceber que a solução gerada é a mesma do enunciado, conforme esperado. 
 
 
 ### 4.2. Caso em que foi criado um produto que utiliza um composto com limite de produção baixo porém é o com maior lucro.
@@ -148,9 +148,9 @@ x2                        208.333<br>
 x3                              0<br> 
 x4                           12.5<br> 
 
-Portanto, uma solução ótima ... contendo ... podemos perceber que ...
+Portanto, uma solução ótima tem lucro de R$ 33075.00 com 3958,3958.33 litros do produto 1, 208,333 do produto 2, 0 litros do produto 3 e 12,5 litros do produto 4, podemos perceber que a solução gerada como o produto de maior lucro consiste em grande parte de uma matéria prima com baixo limite de produção diária, foi necessário a distribuição entre outros produtos também na produção. 
 
-4.3. Situação em que houve alta nos preço dos compostos e a produção está dando prejuízo para todos os produtos.
+4.3. Situação em que houve alta nos preços dos compostos e a produção está dando prejuízo para todos os produtos.
 
 |     |        | COM  | POS  | TOS |      |       |
 |-----|--------|------|------|-----|------|-------|
@@ -197,7 +197,7 @@ x2                              0
 x3                              0
 x4                              0
 
-Portanto, uma solução ótima ... contendo ... podemos perceber que ...
+Portanto, uma solução ótima tem lucro de R$ 0.00 com 0 litros do produto 1, 0 do produto 2, 0 litros do produto 3 e 0 litros do produto 4, podemos perceber que a solução gerada como a produção de todos os produtos está gerando prejuízo, a solução ótima para maximizar o lucro é a de não produzir. 
 
 
 ### 4.4. Dois produtos com a maior margem de lucro, porém limites de compostos diários distintos.
@@ -207,10 +207,10 @@ Portanto, uma solução ótima ... contendo ... podemos perceber que ...
 | PRO | 1      | 0.2  | 0.5  | 0.0 | 0.1  | 10    |
 | DU  | 2      | 1.0  | 0.1  | 0.0 | 0.1  | 7     |
 | TOS | 3      | 0.4  | 0.2  | 0.0 | 0.0  | 3     |
-|     | 4      | 0.0  | 1.0  | 0.8 | 0.0  | 100   |
+|     | 4      | 0.0  | 0.1  | 0.8 | 0.0  | 100   |
 |     | 5      | 0.1  | 0.0  | 0.8 | 0.0  | 100   |
 |     | CUSTO  | 1    | 1    | 5   |  10  |       |
-|     | LIMITE | 1000 | 2000 | 200  | 2000 |       |
+|     | LIMITE | 1000 | 2000 | 200  | 2000 |      |
 
 INPUT: <br> 
 
@@ -250,8 +250,7 @@ x3                              0
 x4                              0
 x5                            250
 
-Portanto, uma solução ótima ... contendo ... podemos perceber que ...
-
+Portanto, uma solução ótima tem lucro de R$ 57765,62 com 3963,54 litros do produto 1, 182,292 do produto 2, 0 litros do produto 3, 0 litros do produto 4,250 litros do produto 5, podemos perceber que mesmo que os produtos x4 e x5 tem o mesmo lucro de produção foi optado pela produção do produto x5 para maximização também do lucro obtido com os outros produtos. 
 
 
 5. Referências
