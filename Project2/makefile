@@ -24,6 +24,9 @@ $(TARGET): $(OBJECTS)
 	$(CC) $(CFLAGS) -c $<
 
 clean:
-	rm -f $(OBJECTS) $(TARGET)
+	rm -f $(OBJECTS)
 
-.PHONY: all clean
+purge: clean
+	rm -f $(TARGET)
+
+.PHONY: all clean purge
