@@ -26,9 +26,9 @@ The program consists of the following functions:
 To compile and run the program, use the following command:
 
 ```
-make
+$ make
 
-./separa <OPTIONS> < example/<EXAMPLES>
+$ ./separa <OPTIONS> < example/<EXAMPLES>
 ```
 
 Available options:
