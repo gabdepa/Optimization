@@ -1,18 +1,90 @@
-## Problem Formulation
-We are given n superheroes numbered from 1 to n. We need to divide them into two groups such that all pairs with high affinity are in the same group and the number of pairs with conflicts in the same group is minimized.
+# Superhero Grouping Problem Solver
 
-## Data Structure
-We need to keep track of conflict pairs and affinity pairs. A good data structure for this purpose would be a set or a list.
+This program solves the Superhero Grouping Problem using the Branch and Bound algorithm. The goal of the problem is to assign superheroes to different groups in such a way that conflicts between superheroes and affinities between superheroes are minimized.
 
-## Branching
-For each superhero, we have two options: to put it in group 1 or group 2. We need to explore both options.
+## Problem Description
 
-## Bounding
-To evaluate each partial solution, we need to have bounding functions. One bounding function could be to calculate the number of conflicts within each group, while another (potentially better) bounding function can be devised by the students. A simple heuristic could be to prefer groupings with the least number of conflicts.
+Given a set of superheroes and a set of conflicts and affinities between them, the program assigns each superhero to one of two groups to minimize the number of conflicts and maximize the number of satisfied affinities.
 
-## Alternative Bounding Function
-sing non-arbitrary weights requires a more strategic approach to bounding. One approach is to base the weights on the relative importance of minimizing conflicts versus preserving affinities. The goal is to make the estimate more accurate and reflective of the problem's constraints.
+ - Conflicts: A conflict is a pair of superheroes that cannot be assigned to the same group.
+ - Affinities: An affinity is a pair of superheroes that should be assigned to the same group.
 
-One way to determine weights is to consider the proportion of conflicts and affinities. If there are more conflicts than affinities, then we can increase the weight of the conflicts penalty. If there are more affinities, we can increase the weight of the affinity rewards.
+## Program Structure
 
-Here we have normalized the weights of conflicts and affinities based on their relative proportions. This should offer a more balanced approach compared to using arbitrary weights. Please note that tweaking and experimenting with the bounding function is essential, and this example may not necessarily be the best bounding function for all instances of the problem. Developing a good bounding function often requires a deep understanding of the problem domain.
+The program consists of the following functions:
+
+- **`areInSameGroup(int a, int b)`**: Checks if superheroes 'a' and 'b' are in the same group.
+- **`satisfiesAffinity()`**: Checks if all affinities are satisfied for the current group assignment.
+- **`calculateConflicts()`**: Calculates the total number of conflicts for the current group assignment.
+- **`bdada()`**: Custom bounding function using conflicts and triangles to evaluate the optimality of a group assignment.
+- **`alternative_bounding_function()`**: Alternative bounding function that considers conflicts and affinities to evaluate the optimality of a group assignment.
+- **`branch_and_bound(int i)`**: Recursive function implementing the Branch and Bound algorithm to search for the optimal group assignment.
+- **`main()`**: Entry point of the program that reads the input, calls the Branch and Bound algorithm, and outputs the results.
+
+## Usage
+
+To compile and run the program, use the following command:
+
+```
+make
+
+./separa <OPTIONS> < example/<EXAMPLES>
+```
+
+Available options:
+
+- **`f`**: Disable viability check. The program will not check if all affinities are satisfied.
+- **`o`**: Disable optimality check. The program will not use the bounding function to prune the search tree.
+- **`a`**: Use the alternative bounding function instead of the default bdada() function.
+
+## Input Format
+
+The program expects the input in the following format:
+
+```
+n k m
+conflicts[0][0] conflicts[0][1]
+conflicts[1][0] conflicts[1][1]
+...
+affinity[0][0] affinity[0][1]
+affinity[1][0] affinity[1][1]
+...
+```
+
+- **`n`**: The number of superheroes.
+- **`k`**: The number of conflicts.
+- **`m`**: The number of affinities.
+- **`conflicts[i][0] conflicts[i][1]`**: The superheroes involved in the i-th conflict.
+- **`affinity[i][0] affinity[i][1]`**: The superheroes involved in the i-th affinity.
+
+## Output Format
+
+The program outputs the following:
+
+```
+min_conflicts
+best_group_assignment
+```
+- **`min_conflicts`**: The minimum number of conflicts achieved by the optimal group assignment.
+- **`best_group_assignment`**: The superhero IDs assigned to the first group in the optimal group assignment.
+
+## Example
+
+Input:
+```
+4 2 2
+1 3
+2 4
+1 2
+3 4
+```
+Output:
+```
+0
+1 2
+```
+The program assigns superhero 1 and superhero 2 to the first group, resulting in zero conflicts and satisfying all affinities.
+
+## Performance
+
+The program uses the Branch and Bound algorithm to solve the Superhero Grouping Problem. The performance of the program depends on the complexity of the input and the selected bounding function. The bdada() function and the alternative_bounding_function() function have different trade-offs in terms of conflicts and runtime. Experiment with different bounding functions and program options to find the best configuration for your specific problem instance.
